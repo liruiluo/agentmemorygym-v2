@@ -296,15 +296,13 @@ def build(out_pptx: Path, site_root: Path):
     s = new("The interface has to satisfy both sides")
     text(s, "Student side", .72, .92, 3.6, .3, size=16, bold=True, color=BLUE)
     terminal(s, "rollout", "cat > notes.md\nconfirmed: velvet", .68, 1.32, 3.9, 1.12, 12.5)
-    text(s, "The action must appear in the sample,\nor there is nothing to supervise.", .72, 2.5, 3.9, .6,
-         size=13.5, color=MID)
+    text(s, "It must appear in the sample.", .72, 2.55, 3.9, .3, size=13.5, color=MID)
     text(s, "Teacher side", 5.42, .92, 3.6, .3, size=16, bold=True, color=RED)
     terminal(s, "frozen teacher", "p(note | context) = 0.91", 5.38, 1.32, 3.9, 1.12, 12.5, accent=RED)
-    text(s, "The teacher must recognise the content\nit is asked to score.", 5.42, 2.5, 3.9, .6,
-         size=13.5, color=MID)
-    node(s, "A shared file interface", 2.9, 3.42, 4.2, .62, BLUE)
-    line(s, 2.63, 1.78, 2.9, 3.42, color=BLUE, arrow=True)
-    line(s, 7.35, 1.78, 7.1, 3.42, color=RED, arrow=True)
+    text(s, "It must be able to score the content.", 5.42, 2.55, 3.9, .3, size=13.5, color=MID)
+    node(s, "A shared file interface", 2.9, 3.5, 4.2, .62, BLUE)
+    line(s, 2.63, 2.9, 2.9, 3.5, color=BLUE, arrow=True)
+    line(s, 7.35, 2.9, 7.1, 3.5, color=RED, arrow=True)
     conclusion(s, [("One interface", BLUE, True),
                    (" raises coverage and supervision at the same time.", INK, False)])
     source(s, "Section 3 · Figure 3; Appendix B")
@@ -327,11 +325,12 @@ def build(out_pptx: Path, site_root: Path):
             ("General", "long office tasks over a tool surface"),
             ("Visual", "build, inspect the render, revise")]
     for i, (name, desc) in enumerate(rows):
-        y = .92 + i*.82
-        node(s, name, .72, y, 2.25, .58, BLUE)
-        text(s, desc, 3.2, y+.14, 6.4, .34, size=15, color=MID)
-        line(s, .72, y+.7, 9.3, y+.7, color=LINE)
-    text(s, "Every environment keeps its native task and shares ordinary shell access with an\nepisode-persistent workspace.", .72, 4.4, 8.5, .55, size=14, color=INK)
+        y = .88 + i*.74
+        node(s, name, .72, y, 2.25, .54, BLUE)
+        text(s, desc, 3.2, y+.12, 6.4, .32, size=15, color=MID)
+        line(s, .72, y+.66, 9.3, y+.66, color=LINE)
+    text(s, "Every environment keeps its native task and shares ordinary shell access\nwith an episode-persistent workspace.",
+         .72, 4.6, 8.6, .50, size=12.5, color=INK)
     source(s, "Section 4 · Appendix A")
 
     # 6 - Method
@@ -430,10 +429,10 @@ def build(out_pptx: Path, site_root: Path):
     # 14 - Cost model
     s = new("Why the interface decides the cost")
     rich(s, [("Rare-action regime of the mean-field cost model:", INK, True)], .78, 1.0, 8.4, .35, 15)
-    text(s, "N  ~  1 / (2\u03bb Q\u2080 u\u2080)", 3.0, 1.6, 4.2, .45, size=22, color=BLUE, bold=True, align=PP_ALIGN.CENTER)
+    text(s, "N  =  1 / (2 \u03bb Q0 u0)", 2.6, 1.6, 5.0, .45, size=22, color=BLUE, bold=True, align=PP_ALIGN.CENTER)
     text(s, "Q0   how rarely the student emits the action", .9, 2.35, 4.2, .3, size=13.5, color=MID)
     text(s, "u0   how far the student starts from the teacher", 5.1, 2.35, 4.2, .3, size=13.5, color=MID)
-    text(s, "The exact mean-field integral has two limits. Rare action gives the form above; a policy\nalready close to the teacher loses u0 entirely and the cost falls to log(1/rho) over\n2*lambda*Q(1-Q). The law is a limit, not a universal law, and the paper says which regime\nit applies to.", .78, 2.95, 8.5, 1.35, size=13.5, color=INK)
+    text(s, "The exact mean-field integral has two limits. Rare action gives the form above; a policy\nalready close to the teacher loses u0 entirely and the cost falls to log(1/\u03c1) over\n2\u03bb Q(1-Q). The law is a limit, not a universal law, and the paper says which regime\nit applies to.", .78, 2.95, 8.5, 1.35, size=13.5, color=INK)
     conclusion(s, [("An interface", BLUE, True),
                    (" moves Q0 and u0 at the same time.", INK, False)])
     source(s, "Appendix B · Theorem 1")
