@@ -1,37 +1,40 @@
-# CAMP-II public talk
+# CAMP-II — teaching agents to remember through files
 
-Audience: ML and agent researchers. Language: English. Fifteen slides, about 15 minutes.
-Source: the paper in `assets/paper.pdf`. Numbers match Table 1, Table 2 and Appendix C.3.
+English research talk, 15 slides / approximately 15 minutes. Chinese speaker notes accompany the editable PPTX. Clean white academic style: large black action titles, blue evidence, sparse red for a measured loss. The website tells the same argument at reading pace.
 
-Main claim: what memory distillation can teach is set by the interface both models already know.
+## Story and exhibits
 
-| # | Role | Action title | Main exhibit | Source |
+| # | Time | Action title | Exhibit and layout | Evidence |
 |---|---|---|---|---|
-| 1 | Title | Coding Agent Memory Post-Training II | Title, authors, JD.com, links | Paper p.1 |
-| 2 | Framing | Distillation asks two questions, not one | One prior vs two priors | Section 1 |
-| 3 | Idea | The interface has to satisfy both sides | Coverage on the left, scoring on the right | Section 3; Figure 3 |
-| 4 | Prior | The file interface is already familiar to both | Third of the teacher's cost; 21.6% of actions | Figure 3a,b |
-| 5 | Environment | CAMG-II: five environments, one substrate | Five task rows | Section 4; Appendix A |
-| 6 | Method | Distil on what the student actually writes | Sample, score, learn | Section 5; Appendix C |
-| 7 | Result | 64.6% average task success | Five-method average chart | Table 1 |
-| 8 | Result | The gain lands where the interface carries the most | Per-domain CAMP-II against CAMP-I | Table 1 |
-| 9 | Ablation | Every variant that touches supervision loses the gain | Five-bar ablation | Figure 6 |
-| 10 | Supervision | The teacher prefers the write that keeps the task | Preference by interface | Appendix D.3 |
-| 11 | Content | What the note says decides the next context | Visual case study | Figure 5 |
-| 12 | Stability | The result does not rest on one draw | Five seeds, 64.9 +/- 0.5 | Appendix C.3 |
-| 13 | Transfer | Trained memory carries outside the gym | Terminal-Bench 2.1 and SWE-Bench Pro V2 | Table 2 |
-| 14 | Theory | Why the interface decides the cost | Rare-action form of Theorem 1 | Appendix B |
-| 15 | Close | What this paper establishes | Three takeaways | Conclusion |
+| 1 | 0:30 | Coding Agent Memory Post-Training II | Typographic title + file bridging two contexts; full title, authors and affiliations | Paper identity |
+| 2 | 1:00 | The context ends. The task does not. | Large task timeline: diagnose → write → context reset → read → continue | Visual example, schematic |
+| 3 | 1:00 | A strong teacher still needs a usable memory interface | Two-sided bottleneck: student samples, teacher scores | Introduction; Figure 3 |
+| 4 | 1:00 | Use the file operations both models already know | One shared workspace, native Bash operations, file retained across reset | Method |
+| 5 | 1:15 | The student acts. The frozen teacher scores. | On-policy sampled response; same-context scoring; token signal and update | Method equations 5–6 |
+| 6 | 0:50 | One policy learns across five task worlds | Five task illustrations with native tasks above one shared file-memory band | CAMG-II section |
+| 7 | 1:15 | File-based OPD gives the largest average gain | All seven learned-memory baseline variants + initial 4B and CAMP-I; highlight 64.6 | Table 1 |
+| 8 | 0:55 | The average improves; Visual remains a trade-off | Five-domain comparison with CAMP-I, including Visual 40.2 vs 46.5 | Table 1 |
+| 9 | 1:00 | Files expose more memory actions to learning | Action share 21.6 / 7.8 / 5.9 and frozen teacher/student NLL | Figure 3 |
+| 10 | 0:55 | The teacher better recognizes task-matched notes | 76.5 / 63.8 / 70.0 preference, clearly defined as matched vs foreign note | Appendix D.3 |
+| 11 | 1:15 | Learning what to write carries the gain | Memory-content mask vs equal-size random mask, with interface controls | Figure 6 |
+| 12 | 1:00 | The agent resumes from a plan it wrote | Full actual Visual case figure at projection scale; not a causal intervention | Figure 5 |
+| 13 | 0:45 | The result repeats across five training seeds | Five native editable points; mean and sample standard deviation | Appendix C.3 |
+| 14 | 1:10 | The learned policy improves on two external benchmarks | Base→CAMP-II paired bars at 4B and 9B; exact 35B-A3B reference | Table 2 |
+| 15 | 0:30 | Familiar operations make better teaching channels | Three linked contributions; one final visual anchor | Conclusion |
 
-## Notes for the speaker
+Main claim: ordinary files are a useful interface for distilling long-horizon memory, because they give both the student and the teacher a familiar channel. This is evidence under the reported comparison, not a theorem that unfamiliar interfaces cannot work.
 
-- Slide 3 argues the design principle before any result. Hold the two columns apart: the student has to
-  emit the action, the teacher has to score what it wrote.
-- Slide 4 quotes the paper's own comparisons: the teacher's cost on files is a third of its cost on
-  compaction, and memory actions are 21.6% of all actions on files against 7.8% and 5.9%.
-- Slide 7 compares averages only. The per-domain row sits on slide 8, where Shop saturates at 100 and
-  Visual stays bounded by the judge.
-- Slide 10 uses the appendix's preference experiment. The intervals for file and compaction overlap over
-  a narrow band, so the slide reports the estimate and leaves significance to the appendix.
-- Slide 12 states the spread, not a confidence interval: five seeds, sample standard deviation.
-- Slide 14 says plainly that the cost law is a limit. Do not present it as a universal law.
+## Presentation rules
+
+- Introduce the context-loss problem before the phrase “interface prior”. Explain OPD before its equation.
+- CAMP-II is the method; CAMG-II is the five-environment suite. Coding refers to how memory is operated, not the semantics of all five tasks.
+- A file write is sampled by the student. The frozen teacher scores that same response under the same visible context; it does not execute the task or write a replacement note.
+- The training signal covers sampled task and memory tokens. Instructions and observations are not targets. The file persists; reset does not inject its contents back into context.
+- Quantitative source: `data/research.json`. Main-table metric is the equal-weight mean of four success rates and Visual panel-mean judge score. Do not label every domain a binary success rate.
+- 2.97× is the ratio of gains over Frozen 4B, not a ratio of final scores. Display arithmetic: (64.6−45.3)/(51.8−45.3). CAMP-I is the task-RL reference, not an OPD baseline.
+- Retain the full main comparison set. Teacher preference is task-match discrimination, not proof that a highly scored note causes success. The Visual trace is an example, not an intervention.
+- No theoretical detour or default references appendix in this 15-minute deck. Put additional protocol context in speaker notes. End on the takeaways, not a blank thank-you slide.
+
+## Editability
+
+Titles, prose, diagrams, charts, data labels and annotations are native PowerPoint elements. The actual Visual case is a frozen paper image. PDF is produced headlessly from the same native scene; it is a shareable rendition, not a claim of Microsoft PowerPoint pixel-identical export.

@@ -48,7 +48,9 @@ def main():
     prs = Presentation(args.pptx)
     sw, sh = pt(prs.slide_width), pt(prs.slide_height)
     args.pdf.parent.mkdir(parents=True, exist_ok=True)
-    pdf = canvas.Canvas(str(args.pdf), pagesize=(sw, sh))
+    # Use an embedded font from the first page. ReportLab otherwise installs an
+    # unused, unembedded Helvetica resource even if every textbox uses Arial.
+    pdf = canvas.Canvas(str(args.pdf), pagesize=(sw, sh), initialFontName="Arial")
     pdf.setTitle(prs.core_properties.title)
     pdf.setAuthor(prs.core_properties.author)
     overflow = []

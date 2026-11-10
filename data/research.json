@@ -1,0 +1,371 @@
+{
+  "title": "Coding Agent Memory Post-Training II: Unlocking the Memory Potential of Pre-trained File Operations for Long-Horizon Tasks via On-Policy Distillation",
+  "short_name": "CAMP-II",
+  "project_url": "https://liruiluo.github.io/agentmemorygym-v2/",
+  "paper_url": "assets/paper.pdf",
+  "arxiv_id": null,
+  "year": 2026,
+  "authors": [
+    "Lirui Luo",
+    "Kelong Mao",
+    "Xinwei Yang",
+    "Rongqing Li",
+    "Luyu Chen",
+    "Kieran Wong",
+    "Yudong Guo",
+    "Xinrui Wang",
+    "Jiayin Zhu",
+    "Gu Simiu",
+    "Sulong Xu",
+    "Cong Fang"
+  ],
+  "affiliations": [
+    "Peking University",
+    "JD.com",
+    "Sichuan University",
+    "Beijing Institute of Technology",
+    "Renmin University of China",
+    "The Hong Kong University of Science and Technology"
+  ],
+  "provenance": {
+    "scope": "Transcribed from the existing project paper and its accompanying current manuscript. This redesign does not refresh results from experimental receipts.",
+    "main": "Paper Table 1",
+    "transfer": "Paper Table 2",
+    "interfaces": "Paper Figure 3",
+    "ablation": "Paper Figure 6",
+    "preference": "Manuscript Appendix D.3",
+    "seeds": "Manuscript Appendix C.3",
+    "case": "Paper Figure 5",
+    "metric": "Equal-weight mean across five held-out domains (128 tasks each): four task success rates and the Visual panel-mean judge score, on a 0–100 scale. Unsubmitted Visual episodes count as zero.",
+    "derived": "Displayed gaps and gain ratios use the published one-decimal table values; they are explanatory arithmetic, not new estimates.",
+    "seed_rounding": "Displayed per-run averages are copied verbatim. For the aggregate arithmetic check, average the five domain cells per run first, then compute sample SD; do not recompute dispersion from already rounded Avg. cells."
+  },
+  "domains": [
+    "Shop",
+    "Coding",
+    "AutoResearch",
+    "General",
+    "Visual"
+  ],
+  "main_results": [
+    {
+      "name": "Frozen 4B",
+      "kind": "initial",
+      "scores": [
+        77.3,
+        27.3,
+        46.1,
+        39.8,
+        36.0
+      ],
+      "avg": 45.3
+    },
+    {
+      "name": "Frozen 9B",
+      "kind": "initial",
+      "scores": [
+        90.6,
+        26.6,
+        56.2,
+        60.9,
+        36.5
+      ],
+      "avg": 54.2
+    },
+    {
+      "name": "Frozen teacher",
+      "kind": "teacher",
+      "scores": [
+        100.0,
+        63.3,
+        83.6,
+        93.0,
+        40.3
+      ],
+      "avg": 76.0
+    },
+    {
+      "name": "MemOPD",
+      "kind": "opd",
+      "scores": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "avg": 0
+    },
+    {
+      "name": "MemOPD (w/ SFT)",
+      "kind": "opd",
+      "scores": [
+        93.0,
+        27.3,
+        39.1,
+        62.5,
+        37.3
+      ],
+      "avg": 51.8
+    },
+    {
+      "name": "CompactOPD",
+      "kind": "opd",
+      "scores": [
+        93.8,
+        24.2,
+        37.5,
+        61.7,
+        23.6
+      ],
+      "avg": 48.2
+    },
+    {
+      "name": "ACM",
+      "kind": "opd",
+      "scores": [
+        94.5,
+        21.9,
+        11.7,
+        59.4,
+        8.5
+      ],
+      "avg": 39.2
+    },
+    {
+      "name": "HELM",
+      "kind": "opd",
+      "scores": [
+        87.5,
+        0,
+        9.4,
+        53.1,
+        33.1
+      ],
+      "avg": 36.6
+    },
+    {
+      "name": "HELM (single-model)",
+      "kind": "opd",
+      "scores": [
+        87.5,
+        29.7,
+        46.9,
+        46.9,
+        38.0
+      ],
+      "avg": 49.8
+    },
+    {
+      "name": "Hy-Memory",
+      "kind": "opd",
+      "scores": [
+        92.2,
+        27.3,
+        35.9,
+        63.3,
+        25.8
+      ],
+      "avg": 48.9
+    },
+    {
+      "name": "CAMP-I",
+      "kind": "rl",
+      "scores": [
+        85.2,
+        32.0,
+        38.3,
+        68.8,
+        46.5
+      ],
+      "avg": 54.2
+    },
+    {
+      "name": "CAMP-II",
+      "kind": "ours",
+      "scores": [
+        100.0,
+        37.5,
+        64.1,
+        81.2,
+        40.2
+      ],
+      "avg": 64.6
+    },
+    {
+      "name": "CAMP-II-9B",
+      "kind": "ours9b",
+      "scores": [
+        100.0,
+        36.7,
+        73.4,
+        82.0,
+        40.2
+      ],
+      "avg": 66.5
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "Files / Bash",
+      "key": "files",
+      "teacher_nll": 0.42,
+      "student_nll": 0.19,
+      "action_share": 21.6,
+      "preference": 76.5
+    },
+    {
+      "name": "Memory tools",
+      "key": "tools",
+      "teacher_nll": 0.91,
+      "student_nll": 0.7,
+      "action_share": 7.8,
+      "preference": 63.8
+    },
+    {
+      "name": "Compaction",
+      "key": "compact",
+      "teacher_nll": 1.4,
+      "student_nll": 0.98,
+      "action_share": 5.9,
+      "preference": 70.0
+    }
+  ],
+  "ablations": [
+    {
+      "name": "CAMP-II",
+      "value": 64.6
+    },
+    {
+      "name": "Compaction interface",
+      "value": 48.2
+    },
+    {
+      "name": "Dedicated memory tools",
+      "value": 48.2
+    },
+    {
+      "name": "Memory-content loss masked",
+      "value": 47.3
+    },
+    {
+      "name": "Same budget masked at random",
+      "value": 63.3
+    }
+  ],
+  "seed_avgs": [
+    64.6,
+    65.5,
+    64.4,
+    65.0,
+    65.2
+  ],
+  "seed_mean": 64.9,
+  "seed_sd": 0.5,
+  "external": [
+    {
+      "name": "Qwen3.5-4B",
+      "tb": 23.1,
+      "swe": 11.2,
+      "avg": 17.1
+    },
+    {
+      "name": "Qwen3.5-9B",
+      "tb": 23.1,
+      "swe": 23.1,
+      "avg": 23.1
+    },
+    {
+      "name": "Qwen3.5-35B-A3B",
+      "tb": 33.8,
+      "swe": 27.4,
+      "avg": 30.6
+    },
+    {
+      "name": "CAMP-II-4B",
+      "tb": 30.0,
+      "swe": 18.1,
+      "avg": 24.1
+    },
+    {
+      "name": "CAMP-II-9B",
+      "tb": 38.0,
+      "swe": 30.1,
+      "avg": 34.1
+    }
+  ],
+  "environments": [
+    {
+      "name": "Shop",
+      "origin": "WebShop",
+      "task": "Complete a chain of six purchases.",
+      "memory": "Carry product evidence and earlier constraints into later sessions.",
+      "icon": "bag"
+    },
+    {
+      "name": "Coding",
+      "origin": "SWE-smith",
+      "task": "Repair a real repository.",
+      "memory": "Retain the diagnosis, code locations and test outcomes across contexts.",
+      "icon": "code"
+    },
+    {
+      "name": "AutoResearch",
+      "origin": "OpenMLE",
+      "task": "Run and improve an ML experiment.",
+      "memory": "Keep experiment choices, measurements and the next hypothesis.",
+      "icon": "plot"
+    },
+    {
+      "name": "General",
+      "origin": "MiMo",
+      "task": "Finish a multi-tool knowledge-work task.",
+      "memory": "Preserve requirements, intermediate outputs and unfinished steps.",
+      "icon": "doc"
+    },
+    {
+      "name": "Visual",
+      "origin": "MiMo / Web development",
+      "task": "Build and refine a website.",
+      "memory": "Save visual findings and an implementation plan, then resume.",
+      "icon": "web"
+    }
+  ],
+  "seed_domain_scores": [
+    [
+      100.0,
+      37.5,
+      64.1,
+      81.2,
+      40.2
+    ],
+    [
+      100.0,
+      39.1,
+      65.6,
+      82.0,
+      41.0
+    ],
+    [
+      100.0,
+      38.3,
+      63.3,
+      80.5,
+      39.7
+    ],
+    [
+      100.0,
+      36.7,
+      64.8,
+      82.8,
+      40.5
+    ],
+    [
+      100.0,
+      38.3,
+      66.4,
+      81.2,
+      40.0
+    ]
+  ]
+}

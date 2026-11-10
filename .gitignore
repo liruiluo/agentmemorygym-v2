@@ -5,3 +5,7 @@ Thumbs.db
 # Local preview artifacts
 *.log
 *.tmp
+
+# Python validation caches
+__pycache__/
+*.py[cod]
