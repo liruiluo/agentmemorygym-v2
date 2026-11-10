@@ -422,3 +422,7 @@ h1, h2, h3 { color: var(--ink); }
 /* Transfer table sits on the dark band; keep the highlighted rows readable. */
 .transfer-section .table-highlight td,
 .transfer-section .table-highlight td strong { color: #ffffff; }
+
+.bibtex-line { display: flex; gap: 12px; align-items: baseline; margin: 22px 0 0; font-size: 11px; color: var(--ink-muted); flex-wrap: wrap; }
+.bibtex-line span { font-family: var(--mono); text-transform: uppercase; letter-spacing: .08em; font-size: 9px; color: var(--coral); }
+.bibtex-line code { font-family: var(--mono); font-size: 10.5px; color: var(--ink); background: var(--paper); padding: 6px 8px; border: 1px solid var(--line); overflow-wrap: anywhere; }

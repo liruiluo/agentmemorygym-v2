@@ -16,7 +16,9 @@ Open <http://127.0.0.1:4180>.
 
 - `index.html`, `styles.css`, `script.js` — the page. The environment strip carries five tabs,
   one per CAMG-II environment.
-- `assets/` — figure exports from the paper, the paper PDF, and the slides.
+- `assets/` — figure exports from the paper, the paper PDF, and the slides (PDF and editable PPTX).
+- `scripts/set_arxiv_id.py` — points the page, the deck and the citation at the arXiv identifier once
+  it exists.
 - `slides/outline.md` — the talk outline, one row per slide with its source.
 - `scripts/build_slides.py` — builds the editable deck with `python-pptx`.
 - `scripts/render_slides_pdf.py` — renders the deck to PDF with macOS Keynote or LibreOffice.
