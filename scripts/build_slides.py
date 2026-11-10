@@ -269,7 +269,7 @@ def build(out_pptx: Path, site_root: Path):
          align=PP_ALIGN.CENTER)
     text(s, "Unlocking the Memory Potential of Pre-trained File Operations\nfor Long-Horizon Tasks via On-Policy Distillation",
          .48, 1.80, 9.04, .75, size=19, bold=True, align=PP_ALIGN.CENTER)
-    text(s, "Lirui Luo · Kelong Mao · Heming Xia · Rongqing Li · Xinwei Yang · Luyu Chen\nKieran Wong · Yudong Guo · Xinrui Wang · Jiayin Zhu · Simiu Gu · Sulong Xu · Cong Fang",
+    text(s, "Lirui Luo · Kelong Mao · Xinwei Yang · Rongqing Li · Luyu Chen\nKieran Wong · Yudong Guo · Xinrui Wang · Jiayin Zhu · Gu Simiu · Sulong Xu · Cong Fang",
          .55, 2.98, 8.9, .56, size=11.4, color=MID, align=PP_ALIGN.CENTER)
     text(s, "JD.com", .6, 3.68, 8.8, .28, size=13, bold=True, align=PP_ALIGN.CENTER)
     links(s, 4.24, 10.4)

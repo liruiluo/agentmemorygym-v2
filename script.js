@@ -120,7 +120,7 @@ function initReveal() {
 function initCitation() {
   const button = document.querySelector("#copy-citation");
   const original = button?.querySelector("span")?.textContent || "Copy citation";
-  const citation = "Luo, Lirui; Mao, Kelong; Xia, Heming; Li, Rongqing; Yang, Xinwei; Chen, Luyu; Wong, Kieran; Guo, Yudong; Wang, Xinrui; Zhu, Jiayin; Gu, Simiu; Xu, Sulong; Fang, Cong. Coding Agent Memory Post-Training II: Unlocking the Memory Potential of Pre-trained File Operations for Long-Horizon Tasks via On-Policy Distillation. 2026.";
+  const citation = "Luo, Lirui; Mao, Kelong; Yang, Xinwei; Li, Rongqing; Chen, Luyu; Wong, Kieran; Guo, Yudong; Wang, Xinrui; Zhu, Jiayin; Gu, Simiu; Xu, Sulong; Fang, Cong. Coding Agent Memory Post-Training II: Unlocking the Memory Potential of Pre-trained File Operations for Long-Horizon Tasks via On-Policy Distillation. 2026.";
   button?.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(citation);
