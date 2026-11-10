@@ -48,7 +48,7 @@ h1 { font-size: clamp(53px, 6.1vw, 98px); line-height: .95; max-width: 760px; ma
 h1 em, h2 span, .split-heading h2 span, .method-header h2 span, .transfer-copy h2 span { color: var(--coral); font-style: normal; }
 .hero-paper-title { max-width: 640px; margin: 0; color: var(--coral-soft); font-size: 15px; line-height: 1.4; letter-spacing: -.01em; }
 .authors { display: flex; flex-wrap: wrap; gap: 5px 11px; max-width: 660px; margin: 20px 0 0; color: var(--white); font-size: 13px; line-height: 1.4; }
-.authors span:not(:last-child)::after { content: ","; color: var(--ink-muted); margin-left: 11px; }
+.authors span:not(:last-child)::after { content: ","; color: var(--ink-muted); margin-left: 1px; }
 .affiliation { margin: 7px 0 0; color: var(--ink-muted); font-family: var(--mono); font-size: 10px; letter-spacing: .13em; text-transform: uppercase; }
 .hero-thesis { max-width: 540px; margin: 27px 0 0; padding-left: 14px; border-left: 2px solid var(--coral); color: var(--white); font-family: var(--display); font-size: clamp(20px, 1.8vw, 27px); letter-spacing: -.04em; line-height: 1.12; }
 .hero-thesis span { display: block; margin-bottom: 8px; color: var(--coral-soft); font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
@@ -70,7 +70,7 @@ h1 em, h2 span, .split-heading h2 span, .method-header h2 span, .transfer-copy h
 .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--coral); display: inline-block; box-shadow: 0 0 0 4px rgba(255,112,94,.14); }
 .status-dot-green { background: var(--mint); box-shadow: 0 0 0 4px rgba(131,221,202,.12); }
 .teaser-frame { margin: 0; background: var(--paper); padding: 12px; color: var(--ink); box-shadow: 18px 22px 0 rgba(255,112,94,.13); }
-.teaser-frame img { width: 100%; aspect-ratio: 1.707 / 1; object-fit: cover; object-position: center; }
+.teaser-frame img { width: 100%; height: auto; display: block; object-fit: contain; }
 .teaser-frame figcaption, .framework-wide figcaption, .evidence-figure figcaption { display: flex; gap: 12px; align-items: baseline; padding: 13px 5px 3px; font-size: 11px; line-height: 1.45; }
 .teaser-frame figcaption span, .framework-wide figcaption span, .evidence-figure figcaption span { color: var(--coral); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; white-space: nowrap; }
 .visual-note { display: flex; align-items: center; gap: 12px; margin-top: 25px; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-muted); }
