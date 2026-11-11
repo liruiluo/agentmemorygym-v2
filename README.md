@@ -94,6 +94,9 @@ python3 scripts/set_arxiv_id.py 2612.01234   # example only; replace it
 This updates the shared data, site, citation and PPTX link. Rebuild the PDF and
 run the checks afterward. The helper never pushes or deploys.
 
-GitHub Pages is configured to publish **`main`**. Design review branches do not
-replace the live site. The 2026-11-10 redesign is prepared on a review branch;
-production deployment is a separate decision.
+GitHub Pages publishes **`main`** at
+<https://liruiluo.github.io/agentmemorygym-v2/>. Website and slides updates are
+complete only after the verified revision reaches `main`, the Pages build
+succeeds for that commit, and the live page and PDF/PPTX downloads are checked.
+Use a review-only branch only when preview-only delivery is explicitly requested.
+Keep the previous commit and deployment verification as rollback evidence.
