@@ -44,7 +44,7 @@ def main():
     citation+='\n}'
     paper='https://arxiv.org/abs/'+d['arxiv_id'] if d['arxiv_id'] else d['paper_url']
     vals={
-      'TITLE':esc(d['title']), 'PROJECT':d['project_url'],'PAPER':paper,'CODE':esc(d['code_url']),
+      'TITLE':esc(d['title']), 'PROJECT':d['project_url'],'PAPER':paper,'CODE':esc(d['code_url']),'DATASET':esc(d['dataset_url']),
       'PAPER_LABEL':'Paper on arXiv' if d['arxiv_id'] else 'Paper PDF',
       'AUTHORS':' · '.join(esc(n) for n in d['authors']), 'AFFILIATIONS':' · '.join(esc(n) for n in d['affiliations']),
       'MAIN_CHART':bars([(r['name'],r['avg']) for r in display],80,'CAMP-II'),
