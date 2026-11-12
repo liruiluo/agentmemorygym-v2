@@ -14,7 +14,7 @@ import fitz
 from pptx import Presentation
 
 ROOT=Path(__file__).resolve().parents[1]
-PAPER_SHA='2607e423906a5dde0cf9043d60885d470fd8a3769ce892a401137b54ea6c5814'
+PAPER_SHA='f340af5b1db73e959717b918a2471299c35c0882346609e0bbac25902dfce908'
 
 class Page(HTMLParser):
     def __init__(self):
@@ -57,8 +57,13 @@ def check(root=ROOT):
     expected_ext=[['Policy','Terminal-Bench 2.1','SWE-Bench Pro V2','Average']]+[[r['name']]+[f'{r[k]:.1f}' for k in ['tb','swe','avg']] for r in d['external']]
     expect(page.tables==[expected_main,expected_ext],'Every displayed table cell matches shared research snapshot')
     expect(len(d['main_results'])==13 and len(d['external'])==5,'Complete comparison roster')
-    expect(len(d['authors'])==12 and all(x in src for x in d['authors']),'All 12 authors retained')
+    expect(len(d['authors'])==13 and all(x in src for x in d['authors']),'All 13 authors retained')
     expect('Heming Xia' not in src and '2609.34422' not in src,'No stale V1 author/identifier')
+    expect(d['authors'].index('Pu Yao')+1==d['authors'].index('Gu Simiu'),'Pu Yao appears immediately before Gu Simiu')
+    paper=fitz.open(root/'assets/paper.pdf');first=paper[0].get_text()
+    expect('Pu Yao' in first and first.index('Pu Yao')<first.index('Gu Simiu'),'Public PDF includes Pu Yao before Gu Simiu')
+    expect('JD.com' in first and d['project_url'] in first,'Public PDF includes JD.com and project website')
+    expect(any(link.get('uri')==d['project_url'] for link in paper[0].get_links()),'Public PDF project link is clickable')
     expect(f'<link rel="canonical" href="{d["project_url"]}">' in src,'Current canonical URL')
     by={r['name']:r for r in d['main_results']}
     gain=by['CAMP-II']['avg']-by['Frozen 4B']['avg'];refgain=by['MemOPD (w/ SFT)']['avg']-by['Frozen 4B']['avg']
@@ -67,7 +72,7 @@ def check(root=ROOT):
     seed_means=[statistics.mean(row) for row in d['seed_domain_scores']]
     expect([round(v,1) for v in seed_means]==d['seed_avgs'],'Seed domain rows reproduce displayed averages')
     expect(round(statistics.mean(seed_means),1)==d['seed_mean'] and round(statistics.stdev(seed_means),1)==d['seed_sd'],'Seed mean and sample SD before intermediate rounding')
-    expect(hashlib.sha256((root/'assets/paper.pdf').read_bytes()).hexdigest()==PAPER_SHA,'Original paper PDF bytes unchanged')
+    expect(hashlib.sha256((root/'assets/paper.pdf').read_bytes()).hexdigest()==PAPER_SHA,'Public paper PDF matches the current source export')
     ppt=Presentation(root/'assets/slides/campii-slides.pptx');pdf=fitz.open(root/'assets/slides/campii-slides.pdf')
     expect(len(ppt.slides)==len(pdf)==15,'PPTX and PDF both 15 slides')
     numeric_wraps=[];bounds=[];mismatches=[];overlaps=[];picture_slides=[]

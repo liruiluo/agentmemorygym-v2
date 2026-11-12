@@ -64,7 +64,7 @@ PPTX and the readable speaker-notes file. Both use the same research snapshot.
 
 Results are transcribed from the **current paper**, not refreshed from experimental
 receipts. Table 1, Table 2, Figures 3/5/6 and Appendices C.3/D.3 are the source
-locations. The original main-paper PDF and figure files are retained unchanged.
+locations. The local paper download uses the public arXiv-format manuscript; figure files and experimental values are preserved.
 
 - The five-domain average combines four task success rates and the Visual
   panel-mean judge score. Unsubmitted Visual episodes count as zero.
@@ -79,7 +79,7 @@ locations. The original main-paper PDF and figure files are retained unchanged.
 - External Table 2 retains the published 35B-A3B row 33.8 / 27.4 / 30.6.
   A MoE parameter count is not an inference-cost measurement.
 
-The complete title and all 12 authors are retained in the website citation.
+The complete title and all 13 authors are retained in the website citation.
 Code: <https://github.com/jd-opensource/CodingAgentMemoryGym>.
 
 ## Paper identifier and deployment
