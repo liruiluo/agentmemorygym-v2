@@ -26,6 +26,13 @@ class BuildTests(unittest.TestCase):
         old=(self.root/'index.html').read_bytes()
         self.assertEqual(self.call('build_website.py').returncode,0)
         self.assertEqual(old,(self.root/'index.html').read_bytes())
+    def test_code_links_survive_regeneration(self):
+        self.assertEqual(self.call('build_website.py').returncode,0)
+        data=json.loads((self.root/'data/research.json').read_text())
+        html=(self.root/'index.html').read_text()
+        self.assertEqual(data['code_url'],'https://github.com/jd-opensource/CodingAgentMemoryGym')
+        self.assertEqual(html.count('href="'+data['code_url']+'"'),2)
+        self.assertNotIn('Code release withheld',html)
     def test_bad_identifier_never_modifies_data(self):
         old=(self.root/'data/research.json').read_bytes()
         for aid in ['TBD','https://arxiv.org/abs/2612.01234','2613.01234','2612.01234<script>','2612.01234v0']:

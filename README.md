@@ -80,15 +80,16 @@ locations. The original main-paper PDF and figure files are retained unchanged.
   A MoE parameter count is not an inference-cost measurement.
 
 The complete title and all 12 authors are retained in the website citation.
-The code is neither linked nor published from this repository.
+Code: <https://github.com/jd-opensource/CodingAgentMemoryGym>.
 
 ## Paper identifier and deployment
 
-Until an author-confirmed identifier is available, paper links point to the
-included PDF. Once it exists:
+Paper: <https://arxiv.org/abs/2611.14009>.
+
+To update the paper identifier consistently across the website and slides:
 
 ```bash
-python3 scripts/set_arxiv_id.py 2612.01234   # example only; replace it
+python3 scripts/set_arxiv_id.py 2611.14009
 ```
 
 This updates the shared data, site, citation and PPTX link. Rebuild the PDF and

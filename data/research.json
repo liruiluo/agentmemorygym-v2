@@ -2,8 +2,9 @@
   "title": "Coding Agent Memory Post-Training II: Unlocking the Memory Potential of Pre-trained File Operations for Long-Horizon Tasks via On-Policy Distillation",
   "short_name": "CAMP-II",
   "project_url": "https://liruiluo.github.io/agentmemorygym-v2/",
+  "code_url": "https://github.com/jd-opensource/CodingAgentMemoryGym",
   "paper_url": "assets/paper.pdf",
-  "arxiv_id": null,
+  "arxiv_id": "2611.14009",
   "year": 2026,
   "authors": [
     "Lirui Luo",
